@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Customer Transactions</h1>
+
+  <div class="filters">
+    <input
+      type="search"
+      placeholder="Enter Customer Name or Transaction Amount to Filter
+ "
+      [(ngModel)]="searchTerm"
+      class="form-control mx-auto my-3"
+    />
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="text-center">Customer Name</th>
+        <th class="text-center">Transaction Date</th>
+        <th class="text-center">Transaction Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of mergedData | search : searchTerm">
+        <td class="text-center">{{ customer.Name }}</td>
+        <td class="text-center">{{ customer.Date | date }}</td>
+        <td class="text-center">{{ customer.Amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="dropdown">
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      {{ Select_Student }}
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item active" (click)="show(1)">Ahmed Ali</a></li>
+      <li><a class="dropdown-item" (click)="show(2)">Aya Elsayed</a></li>
+      <li><a class="dropdown-item" (click)="show(3)">Mina Adel</a></li>
+      <li><a class="dropdown-item" (click)="show(4)">Sarah Reda</a></li>
+      <li><a class="dropdown-item" (click)="show(5)">Mohamed Sayed</a></li>
+    </ul>
+  </div>
+</div>
+
+<div>
+  <canvasjs-chart *ngIf="show1" [options]="chartOptions1"></canvasjs-chart>
+  <canvasjs-chart *ngIf="show2" [options]="chartOptions2"></canvasjs-chart>
+  <canvasjs-chart *ngIf="show3" [options]="chartOptions3"></canvasjs-chart>
+  <canvasjs-chart *ngIf="show4" [options]="chartOptions4"></canvasjs-chart>
+  <canvasjs-chart *ngIf="show5" [options]="chartOptions5"></canvasjs-chart>
+</div>
